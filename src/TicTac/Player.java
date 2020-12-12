@@ -22,4 +22,8 @@ public class Player {
     public String toString(){
         return this.name+" has mark-"+this.mark;
     }
+
+    public Mark getMark() {
+        return mark;
+    }
 }
