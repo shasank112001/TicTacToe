@@ -21,6 +21,7 @@ public class GamePanel extends JPanel {
         this.board = new Board(size);
         this.setLayout(new GridLayout(size,size));
         this.setBackground(Color.BLACK);
+        this.setVisible(true);
         this.grid= new TileButton[size][size];
         for(int i=0;i<size;i++){
             for(int j=0;j<size;j++){

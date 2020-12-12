@@ -1,7 +1,6 @@
 package TicTacToeGUI;
 
-import TicTac.Board;
-import TicTac.Player;
+import TicTac.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,13 +18,20 @@ public class TicTacToe {
         Toolkit tk = Toolkit.getDefaultToolkit();
         Dimension dim = tk.getScreenSize();
         frame.setLayout(new BorderLayout());
+        frame.setTitle("TicTacToe");
+        frame.setIconImage(IconAddress.getGameIcon());
         frame.setSize(dim.width/2, dim.height/2);
         frame.setLocation(dim.width/2-frame.getWidth()/2,dim.height/2-frame.getHeight()/2);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setVisible(true);
         frame.setBackground(Color.BLACK);
         this.gamePanel=new GamePanel(3,this);
+        this.board = new Board(3);
+        this.player1 = new Player("Jack", Mark.X);
+        this.player2 = new ComputerPlayer(Mark.O,new DifficultStrategy());
+        currentPlayer = player1;
+
         frame.add(gamePanel, BorderLayout.CENTER);
+        frame.setVisible(true);
     }
 
     public Board getBoard() {
@@ -44,6 +50,13 @@ public class TicTacToe {
         this.player2 = player2;
     }
 
+    public void nextPlayer(){
+        if(currentPlayer.equals(player1)) {
+            this.currentPlayer = player2;
+        }
+        else
+            currentPlayer = player1;
+    }
     public void setCurrentPlayer(Player currentPlayer) {
         this.currentPlayer = currentPlayer;
     }
@@ -61,7 +74,8 @@ public class TicTacToe {
     }
 
     public void gameOver(){
-
+        System.out.println("Game Over");
+        System.exit(1);
     }
 
     public static void main(String args[]){
