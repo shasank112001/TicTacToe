@@ -9,11 +9,11 @@ public enum Mark {
         this.symbol = symbol;
     }
 
-    public Mark getOther(Mark m){
-        if(m.equals(X)){
+    public Mark getOther(){
+        if(this.equals(X)){
             return O;
         }
-        else if (m.equals(O)){
+        else if (this.equals(O)){
             return X;
         }
         else return EMPTY;

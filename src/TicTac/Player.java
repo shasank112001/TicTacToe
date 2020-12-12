@@ -11,21 +11,15 @@ public class Player {
         this.mark = mark;
     }
 
-    public Player(String name){
-        this(name,Mark.X);
+    public Player(String name) {
+        this(name, Mark.X);
     }
-    public int[] determineMove(){
-        return new int[]{0,0};
-    }
-    public void makeMove(Board board) throws InvalidMoveArrayException {
-        while(true){
-            int[] move = determineMove();
-            if(board.isValidMove(move)){
-                board.setField(move,this.mark);
-                break;
-            } else {
 
-            }
-            }
+    public void makeMove(int i, int j,Board board) throws InvalidMoveArrayException {
+        board.setField(new int[]{i,j},this.mark);
+    }
+
+    public String toString(){
+        return this.name+" has mark-"+this.mark;
     }
 }
