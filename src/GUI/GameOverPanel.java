@@ -48,8 +48,8 @@ public class GameOverPanel extends JPanel {
 
     public Point findLocation(int width,int height){
 
-        int y = height/2 - replayButton.getHeight()/2;
-        int x = width/2-replayButton.getWidth()/2;
+        int y = height/2 - replayButton.getHeight();
+        int x = width/2-2*replayButton.getWidth()/3;
         System.out.println("("+x+","+y+")");
         return new Point(x,y);
     }

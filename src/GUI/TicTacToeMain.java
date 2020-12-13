@@ -8,6 +8,7 @@ import TicTac.Player;
 import javax.swing.*;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 import java.awt.*;
+import java.util.TimerTask;
 
 public class TicTacToeMain {
     private GameComponents components;
@@ -31,6 +32,7 @@ public class TicTacToeMain {
         this.frame.add(boardPanel);
         this.frame.setVisible(true);
         this.setUpGameComponents();
+
     }
 
     public void setSquareSize(Dimension d){
@@ -49,9 +51,10 @@ public class TicTacToeMain {
     }
 
     public void gameOver(){
-        this.frame.remove(boardPanel);
-        this.gop = new GameOverPanel(this);
-        this.frame.add(gop);
+
+        frame.remove(boardPanel);
+        gop = new GameOverPanel(this);
+        frame.add(gop);
         gop.addButton(frame.getWidth(),frame.getHeight());
     }
 

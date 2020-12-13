@@ -19,6 +19,13 @@ public class DifficultStrategy implements Strategy {
                 fields.add(new int[]{i,j});
             }
         }
+        //if there is only one empty field
+        if(fields.size()==1){
+            return fields.get(0);
+        }
+        if(fields.size()==0){
+            return null;
+        }
         // if computer could win
         for(int i=0;i<fields.size();i++) {
             board.setField(fields.get(i), mark);
