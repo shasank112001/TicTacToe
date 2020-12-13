@@ -11,7 +11,7 @@ import java.awt.event.MouseListener;
 public class GameButton extends JButton {
     int i, j;
     private Color defaultColor;
-
+    private Color highLightColor;
     public Color getDefaultColor() {
         return defaultColor;
     }
@@ -21,8 +21,10 @@ public class GameButton extends JButton {
         super();
         this.i=i;
         this.j=j;
+        this.highLightColor = Color.LIGHT_GRAY;
         this.addMouseListener(lsn);
         this.setActionCommand("Empty");
+        this.setBackground(Color.DARK_GRAY);
         this.setBorder(BorderFactory.createLineBorder(Color.WHITE));
         this.clicked = false;
         this.defaultColor = this.getBackground();
@@ -48,7 +50,11 @@ public class GameButton extends JButton {
     public int getJ() {
         return j;
     }
-    
+
+    public Color getHighLightColor() {
+        return highLightColor;
+    }
+
     public void clickAction(BoardPanel boardPanel, Player player) throws InvalidMoveArrayException {
         if((boardPanel.getGame().getBoard().isValidMove(this.getI(),this.getJ()))){
             player.makeMove(this.getI(),this.getJ(),boardPanel.getGame().getBoard());
@@ -57,7 +63,8 @@ public class GameButton extends JButton {
             } else {
                 this.setIcon(scaleImage(this, IconAndImages.getCircleIcon()));
             }
-            boardPanel.getGame().setAIsChance();
+            if(boardPanel.getGame().isAgainstAI())
+                boardPanel.getGame().setAIsChance();
             this.setActionCommand(player.getMark().toString());
             boardPanel.getGame().setNextPlayer();
             if(boardPanel.getGame().getBoard().gameOver())
@@ -77,6 +84,8 @@ public class GameButton extends JButton {
         } else {
             size.height = -1;
         }
+        size.width -= size.width/10;
+        size.height -= size.height/10;
         Image scaled = img.getScaledInstance(size.width, size.height, Image.SCALE_SMOOTH);
         return new ImageIcon(scaled);
     }

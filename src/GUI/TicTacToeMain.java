@@ -20,7 +20,7 @@ public class TicTacToeMain {
         Dimension dim = tk.getScreenSize();
         this.frame.setLayout(new BorderLayout());
         this.frame.setTitle("TicTacToe");
-        this.frame.setIconImage(IconAndImages.getGameIcon());
+       this.frame.setIconImage(IconAndImages.getGameIcon());
         this.setSquareSize(dim);
         this.frame.setResizable(false);
         this.frame.setLocation(dim.width/2-this.frame.getWidth()/2,dim.height/2-this.frame.getHeight()/2);
@@ -41,11 +41,16 @@ public class TicTacToeMain {
     }
 
     public void setUpGameComponents() throws AWTException {
-        this.components = new GameComponents(new Player("James", Mark.X),new AIPlayerGUI(Mark.O,new DifficultStrategy()),new Board(3));
+//        this.components = new GameComponents(new Player("James", Mark.X),new AIPlayerGUI(Mark.O,new DifficultStrategy()),new Board(3),this);
+        this.components = new GameComponents(new Player("James", Mark.X),new Player("Harry",Mark.O),new Board(3),this);
         components.setPanelForComputerAI(this.boardPanel);
         this.boardPanel.setComponents(this.components);
     }
 
+    public void gameOver(){
+        this.frame.remove(boardPanel);
+        this.frame.add(new GameOverPanel(),BorderLayout.CENTER);
+    }
     public static void main(String args[]) throws AWTException {
         try {
             UIManager.setLookAndFeel(new MetalLookAndFeel() );

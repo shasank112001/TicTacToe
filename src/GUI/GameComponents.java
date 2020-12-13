@@ -10,12 +10,14 @@ public class GameComponents {
     private Player currentPlayer;
     private Boolean isAIsChance;
     private Boolean isAgainstAI;
+    private TicTacToeMain mainGame;
 
-    public GameComponents(Player player1, Player player2, Board board){
+    public GameComponents(Player player1, Player player2, Board board,TicTacToeMain mainGame){
         this.player1 = player1;
         this.player2 = player2;
         this.board = board;
         this.currentPlayer = player1;
+        this.mainGame=mainGame;
     }
 
     public Player getPlayer1() {
@@ -59,12 +61,7 @@ public class GameComponents {
     }
 
     public void gameOver(){
-        System.out.println("Game Over");
-        if(board.checkMarkForWin(player1.getMark())){
-            System.out.println(player1+" has won");
-        } else
-            System.out.println(player2+" has won");
-        System.exit(1);
+        this.mainGame.gameOver();
     }
 
     public void setPanelForComputerAI(BoardPanel boardPanel){
@@ -77,13 +74,17 @@ public class GameComponents {
             this.isAgainstAI = true;
             this.isAIsChance = false;
         }
+        this.isAgainstAI = false;
     }
 
     public boolean isAISChance(){
         return isAIsChance;
     }
     public void setAIsChance(){
-        System.out.println("AI's chance was flipped from "+ isAIsChance +" to " + !isAIsChance);
-        isAIsChance = !isAIsChance;
+        if(isAIsChance!=null)
+            isAIsChance = !isAIsChance;
+    }
+    public Boolean isAgainstAI(){
+        return isAgainstAI;
     }
 }

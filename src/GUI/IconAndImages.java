@@ -8,17 +8,19 @@ import java.net.URL;
 
 public class IconAndImages {
     private static BufferedImage gameIcon;
+    private static BufferedImage gameOverImage;
 
     static {
         try {
             gameIcon = ImageIO.read(IconAndImages.class.getResource("/imgs/gameIcon.png"));
+            gameOverImage = ImageIO.read(IconAndImages.class.getResource("/imgs/gameOver.jpg"));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     private static final URL cross = IconAndImages.class.getResource("/imgs/cross.png");
-    private static final URL circle = IconAndImages.class.getResource("/imgs/circle.png");
+    private static final URL circle = IconAndImages.class.getResource("/imgs/ring.png");
     private static Image crossIcon;
     private static Image circleIcon;
 
@@ -41,5 +43,9 @@ public class IconAndImages {
 
     public static Image getCircleIcon() {
         return circleIcon;
+    }
+
+    public static Image getGameOverImage() {
+        return gameOverImage;
     }
 }

@@ -18,7 +18,7 @@ public class TicTacToeMouseListener implements MouseListener {
         GameButton gameButton = (GameButton)e.getSource();
         try {
             gameButton.clickAction(this.boardPanel,this.boardPanel.getGame().getCurrentPlayer());
-            if(boardPanel.getGame().isAISChance()){
+            if(boardPanel.getGame().isAgainstAI() && boardPanel.getGame().isAISChance()){
                 ((AIPlayerGUI)this.boardPanel.getGame().getCurrentPlayer()).makeMove();
             }
         } catch (InvalidMoveArrayException invalidMoveArrayException) {
@@ -38,7 +38,7 @@ public class TicTacToeMouseListener implements MouseListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        ((GameButton)e.getSource()).setBackground(Color.BLACK);
+        ((GameButton)e.getSource()).setBackground(((GameButton)e.getSource()).getHighLightColor());
 
     }
 
