@@ -1,26 +1,24 @@
-package TicTacToeGUI;
+package GUI;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 
-public class IconAddress {
+public class IconAndImages {
     private static BufferedImage gameIcon;
 
     static {
         try {
-            gameIcon = ImageIO.read(IconAddress.class.getResource("/imgs/gameIcon.png"));
+            gameIcon = ImageIO.read(IconAndImages.class.getResource("/imgs/gameIcon.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private static final URL cross = IconAddress.class.getResource("/imgs/cross.png");
-    private static final URL circle = IconAddress.class.getResource("/imgs/circle.png");
+    private static final URL cross = IconAndImages.class.getResource("/imgs/cross.png");
+    private static final URL circle = IconAndImages.class.getResource("/imgs/circle.png");
     private static Image crossIcon;
     private static Image circleIcon;
 

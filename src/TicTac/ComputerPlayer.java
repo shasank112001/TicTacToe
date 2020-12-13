@@ -9,8 +9,15 @@ public class ComputerPlayer extends Player{
         super(strategy.getName(), mark);
         this.strategy = strategy;
     }
+
+    public int[] determineMove(Board board) throws InvalidMoveArrayException {
+        return strategy.determineMove(board,this.mark);
+    }
     public void makeMove(Board board) throws InvalidMoveArrayException {
-        int[] move = strategy.determineMove(board,this.mark);
-        this.makeMove(move[0],move[1],board);
+        int[] move = this.determineMove(board);
+        super.makeMove(move[0],move[1],board);
+    }
+    public void makeMove(int i, int j,Board board) throws InvalidMoveArrayException {
+        super.makeMove(i,j,board);
     }
 }
