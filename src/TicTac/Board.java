@@ -48,16 +48,15 @@ public class Board {
         return isValidMove(new int[]{i,j});
     }
 
-    public void setField(int[] move,Mark mark) throws InvalidMoveArrayException {
-        if (isValidMove(move)) {
-            fields[move[0]][move[1]]=mark;
-        }
+    public void setField(int[] move,Mark mark){
+        fields[move[0]][move[1]]=mark;
+    }
+
+    public void setField(int i, int j, Mark mark){
+        this.setField(new int[] {i,j},mark);
     }
     public Mark getField(int[] move) throws InvalidMoveArrayException {
-        if (isValidMove(move)) {
-            return fields[move[0]][move[1]];
-        }
-        return null;
+        return fields[move[0]][move[1]];
     }
     public Mark getField(int i, int j) throws InvalidMoveArrayException {
         return getField(new int[]{i,j});
@@ -131,5 +130,19 @@ public class Board {
     }
     public boolean gameOver(){
         return hasWinner() || isFull();
+    }
+    public String toString(){
+        String str = new String();
+        for(int i=0;i<size;i++){
+            for(int j=0;j<size;j++){
+                try {
+                    str+=(getField(i,j).toString()+" ");
+                } catch (InvalidMoveArrayException e) {
+                    e.printStackTrace();
+                }
+            }
+            str+="\n";
+        }
+        return str;
     }
 }

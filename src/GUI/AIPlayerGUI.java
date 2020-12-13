@@ -26,9 +26,10 @@ public class AIPlayerGUI extends Player {
         return this.strategy.determineMove(board, this.getMark());
     }
 
-    public void makeMove(Board board) throws InvalidMoveArrayException {
-        int[] move = this.determineMove( board);
-//        this.boardPanel.getButton(move[0],move[1]).clickAction(this.boardPanel);
-        super.makeMove(move[0],move[1],board);
+    public void makeMove() throws InvalidMoveArrayException {
+        int[] move = this.determineMove(this.boardPanel.getGame().getBoard());
+        this.boardPanel.getButton(move[0],move[1]).clickAction(this.boardPanel,this);
+        System.out.println("this is the toString from the AI");
+        System.out.println(this.boardPanel.getGame().getBoard());
     }
 }

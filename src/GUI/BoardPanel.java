@@ -6,7 +6,7 @@ import java.awt.*;
 public class BoardPanel extends JPanel {
     private GameButton[][] grid;
     private GameComponents game;
-    public BoardPanel(int size, GameComponents game){
+    public BoardPanel(int size){
         super();
         int tempWidth = (this.getWidth()>this.getHeight())?this.getHeight():this.getWidth();
         this.setPreferredSize(new Dimension(tempWidth,tempWidth));
@@ -22,6 +22,9 @@ public class BoardPanel extends JPanel {
         }
     }
 
+    public void setComponents(GameComponents components){
+        this.game = components;
+    }
     public GameButton getButton(int i, int j){
         return grid[i][j];
     }

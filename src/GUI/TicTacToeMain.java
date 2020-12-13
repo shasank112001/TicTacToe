@@ -26,10 +26,10 @@ public class TicTacToeMain {
         this.frame.setLocation(dim.width/2-this.frame.getWidth()/2,dim.height/2-this.frame.getHeight()/2);
         this.frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.frame.setBackground(Color.BLACK);
-        this.boardPanel =new BoardPanel(3,components);
+        this.boardPanel =new BoardPanel(3);
         this.frame.add(boardPanel, BorderLayout.CENTER);
         this.frame.setVisible(true);
-        this.setUpTicTacToeMain();
+        this.setUpGameComponents();
     }
 
     public void setSquareSize(Dimension d){
@@ -40,9 +40,10 @@ public class TicTacToeMain {
         }
     }
 
-    public void setUpTicTacToeMain() throws AWTException {
+    public void setUpGameComponents() throws AWTException {
         this.components = new GameComponents(new Player("James", Mark.X),new AIPlayerGUI(Mark.O,new DifficultStrategy()),new Board(3));
         components.setPanelForComputerAI(this.boardPanel);
+        this.boardPanel.setComponents(this.components);
     }
 
     public static void main(String args[]) throws AWTException {

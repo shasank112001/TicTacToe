@@ -3,6 +3,7 @@ package GUI;
 import Exceptions.InvalidMoveArrayException;
 
 
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -16,9 +17,9 @@ public class TicTacToeMouseListener implements MouseListener {
     public void mouseClicked(MouseEvent e) {
         GameButton gameButton = (GameButton)e.getSource();
         try {
-            gameButton.clickAction(this.boardPanel);
-            if(this.boardPanel.getGame().getCurrentPlayer() instanceof AIPlayerGUI){
-                ((AIPlayerGUI) this.boardPanel.getGame().getCurrentPlayer()).makeMove(this.boardPanel.getGame().getBoard());
+            gameButton.clickAction(this.boardPanel,this.boardPanel.getGame().getCurrentPlayer());
+            if(boardPanel.getGame().isAISChance()){
+                ((AIPlayerGUI)this.boardPanel.getGame().getCurrentPlayer()).makeMove();
             }
         } catch (InvalidMoveArrayException invalidMoveArrayException) {
             invalidMoveArrayException.printStackTrace();
@@ -37,11 +38,13 @@ public class TicTacToeMouseListener implements MouseListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
+        ((GameButton)e.getSource()).setBackground(Color.BLACK);
 
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
+        ((GameButton)e.getSource()).setBackground(((GameButton)e.getSource()).getDefaultColor());
 
     }
 }

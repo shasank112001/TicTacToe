@@ -2,6 +2,7 @@ package GUI;
 
 import Exceptions.InvalidMoveArrayException;
 import TicTac.Mark;
+import TicTac.Player;
 
 import javax.swing.*;
 import java.awt.*;
@@ -48,19 +49,21 @@ public class GameButton extends JButton {
         return j;
     }
     
-    public void clickAction(BoardPanel boardPanel) throws InvalidMoveArrayException {
+    public void clickAction(BoardPanel boardPanel, Player player) throws InvalidMoveArrayException {
         if((boardPanel.getGame().getBoard().isValidMove(this.getI(),this.getJ()))){
-            boardPanel.getGame().getCurrentPlayer().makeMove(this.getI(),this.getJ(),boardPanel.getGame().getBoard());
-            if(boardPanel.getGame().getCurrentPlayer().getMark().equals(Mark.X)){
+            player.makeMove(this.getI(),this.getJ(),boardPanel.getGame().getBoard());
+            if(player.getMark().equals(Mark.X)){
                 this.setIcon(scaleImage(this, IconAndImages.getCrossIcon()));
             } else {
                 this.setIcon(scaleImage(this, IconAndImages.getCircleIcon()));
             }
-            this.setActionCommand(boardPanel.getGame().getCurrentPlayer().getMark().toString());
+            boardPanel.getGame().setAIsChance();
+            this.setActionCommand(player.getMark().toString());
             boardPanel.getGame().setNextPlayer();
             if(boardPanel.getGame().getBoard().gameOver())
                 boardPanel.getGame().gameOver();
             this.setClicked(true);
+            System.out.println(boardPanel.getGame().getBoard());
         }
     }
 
