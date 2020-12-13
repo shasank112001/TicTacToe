@@ -25,7 +25,8 @@ public class GameButton extends JButton {
         this.addMouseListener(lsn);
         this.setActionCommand("Empty");
         this.setBackground(Color.DARK_GRAY);
-        this.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+//        this.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+        this.setBorder(BorderFactory.createLineBorder(new Color(2,19,28)));
         this.clicked = false;
         this.defaultColor = this.getBackground();
         int tempSmallerWidth = (this.getWidth()>this.getHeight())?this.getHeight():this.getWidth();
@@ -74,7 +75,7 @@ public class GameButton extends JButton {
         }
     }
 
-    public ImageIcon scaleImage(GameButton tbtn, Image img){
+    public static ImageIcon scaleImage(JButton tbtn, Image img){
         Dimension size = tbtn.getSize();
         Insets insets = tbtn.getInsets();
         size.width -= insets.left + insets.right;
@@ -88,5 +89,12 @@ public class GameButton extends JButton {
         size.height -= size.height/10;
         Image scaled = img.getScaledInstance(size.width, size.height, Image.SCALE_SMOOTH);
         return new ImageIcon(scaled);
+    }
+
+    public void reset(){
+        this.setActionCommand("Empty");
+        this.setBackground(Color.DARK_GRAY);
+        this.clicked = false;
+        this.setIcon(null);
     }
 }

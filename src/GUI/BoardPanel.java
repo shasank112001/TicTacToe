@@ -6,8 +6,10 @@ import java.awt.*;
 public class BoardPanel extends JPanel {
     private GameButton[][] grid;
     private GameComponents game;
+    private int size;
     public BoardPanel(int size){
         super();
+        this.size = size;
         int tempWidth = (this.getWidth()>this.getHeight())?this.getHeight():this.getWidth();
         this.setPreferredSize(new Dimension(tempWidth,tempWidth));
         this.setLayout(new GridLayout(size,size));
@@ -29,4 +31,11 @@ public class BoardPanel extends JPanel {
         return grid[i][j];
     }
     public GameComponents getGame(){ return this.game;}
+    public void reset(){
+        for(int i=0;i<size;i++){
+            for(int j=0;j<size;j++){
+                grid[i][j].reset();
+            }
+        }
+    }
 }

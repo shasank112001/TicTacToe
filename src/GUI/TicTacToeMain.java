@@ -13,12 +13,13 @@ public class TicTacToeMain {
     private GameComponents components;
     private JFrame frame;
     private BoardPanel boardPanel;
+    private GameOverPanel gop;
 
     public TicTacToeMain() throws AWTException {
         this.frame = new JFrame();
         Toolkit tk = Toolkit.getDefaultToolkit();
         Dimension dim = tk.getScreenSize();
-        this.frame.setLayout(new BorderLayout());
+        this.frame.setLayout(new CardLayout());
         this.frame.setTitle("TicTacToe");
        this.frame.setIconImage(IconAndImages.getGameIcon());
         this.setSquareSize(dim);
@@ -27,7 +28,7 @@ public class TicTacToeMain {
         this.frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.frame.setBackground(Color.BLACK);
         this.boardPanel =new BoardPanel(3);
-        this.frame.add(boardPanel, BorderLayout.CENTER);
+        this.frame.add(boardPanel);
         this.frame.setVisible(true);
         this.setUpGameComponents();
     }
@@ -41,15 +42,24 @@ public class TicTacToeMain {
     }
 
     public void setUpGameComponents() throws AWTException {
-//        this.components = new GameComponents(new Player("James", Mark.X),new AIPlayerGUI(Mark.O,new DifficultStrategy()),new Board(3),this);
-        this.components = new GameComponents(new Player("James", Mark.X),new Player("Harry",Mark.O),new Board(3),this);
+        this.components = new GameComponents(new Player("James", Mark.X),new AIPlayerGUI(Mark.O,new DifficultStrategy()),new Board(3),this);
+//        this.components = new GameComponents(new Player("James", Mark.X),new Player("Harry",Mark.O),new Board(3),this);
         components.setPanelForComputerAI(this.boardPanel);
         this.boardPanel.setComponents(this.components);
     }
 
     public void gameOver(){
         this.frame.remove(boardPanel);
-        this.frame.add(new GameOverPanel(),BorderLayout.CENTER);
+        this.gop = new GameOverPanel(this);
+        this.frame.add(gop);
+        gop.addButton(frame.getWidth(),frame.getHeight());
+    }
+
+    public void reset(){
+        this.frame.remove(this.gop);
+        this.boardPanel.reset();
+        this.components.reset();
+        this.frame.add(boardPanel);
     }
     public static void main(String args[]) throws AWTException {
         try {

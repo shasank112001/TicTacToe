@@ -24,7 +24,6 @@ public class DifficultStrategy implements Strategy {
             board.setField(fields.get(i), mark);
             if(board.checkMarkForWin(mark)) {
                 board.setField(fields.get(i), Mark.EMPTY);
-                System.out.println("Move was Determined at"+"["+fields.get(i)[0]+","+fields.get(i)[0]+"]");
                 return fields.get(i);
             } else {
                 board.setField(fields.get(i), Mark.EMPTY);
@@ -36,7 +35,6 @@ public class DifficultStrategy implements Strategy {
             board.setField(fields.get(i), mark.getOther());
             if(board.checkMarkForWin(mark.getOther())) {
                 board.setField(fields.get(i), Mark.EMPTY);
-                System.out.println("Move was Determined at"+"["+fields.get(i)[0]+","+fields.get(i)[0]+"]");
                 return fields.get(i);
             } else {
                 board.setField(fields.get(i), Mark.EMPTY);

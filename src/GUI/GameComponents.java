@@ -74,7 +74,13 @@ public class GameComponents {
             this.isAgainstAI = true;
             this.isAIsChance = false;
         }
-        this.isAgainstAI = false;
+        else
+            this.isAgainstAI = false;
+    }
+    public void reset(){
+        this.board = new Board();
+        if(isAIsChance!=null && isAIsChance==true)
+            isAIsChance = false;
     }
 
     public boolean isAISChance(){
