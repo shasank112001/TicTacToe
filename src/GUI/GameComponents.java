@@ -81,8 +81,17 @@ public class GameComponents {
         this.board = new Board();
         if(isAIsChance!=null && isAIsChance==true)
             isAIsChance = false;
+        this.currentPlayer=this.player1;
     }
 
+    public int getSize(){
+        return this.board.getSize();
+    }
+
+    public void setAgainstAI(boolean againstAI){
+        this.isAgainstAI = againstAI;
+        this.isAIsChance = false;
+    }
     public boolean isAISChance(){
         return isAIsChance;
     }

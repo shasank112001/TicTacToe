@@ -10,10 +10,13 @@ import java.net.URL;
 public class IconAndImages {
     private static BufferedImage gameIcon;
     private static BufferedImage gameOverImage;
+    private static BufferedImage mainMenuImage;
+
     static {
         try {
             gameIcon = ImageIO.read(IconAndImages.class.getResource("/imgs/gameIcon.png"));
             gameOverImage = ImageIO.read(IconAndImages.class.getResource("/imgs/gameOver.jpg"));
+            mainMenuImage = ImageIO.read(IconAndImages.class.getResource("/imgs/mainMenu.jpg"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -52,5 +55,9 @@ public class IconAndImages {
 
     public static Image getGameOverImage() {
         return gameOverImage;
+    }
+
+    public static BufferedImage getMainMenuImage() {
+        return mainMenuImage;
     }
 }

@@ -15,24 +15,28 @@ public class TicTacToeMain {
     private JFrame frame;
     private BoardPanel boardPanel;
     private GameOverPanel gop;
+    private MenuPanel menu;
 
     public TicTacToeMain() throws AWTException {
+        this.setUpFrame();
+        this.menu = new MenuPanel(this);
+        this.frame.add(this.menu);
+        this.frame.setVisible(true);
+
+    }
+
+    public void setUpFrame(){
         this.frame = new JFrame();
         Toolkit tk = Toolkit.getDefaultToolkit();
         Dimension dim = tk.getScreenSize();
-        this.frame.setLayout(new CardLayout());
         this.frame.setTitle("TicTacToe");
-       this.frame.setIconImage(IconAndImages.getGameIcon());
+        this.frame.setIconImage(IconAndImages.getGameIcon());
         this.setSquareSize(dim);
         this.frame.setResizable(false);
         this.frame.setLocation(dim.width/2-this.frame.getWidth()/2,dim.height/2-this.frame.getHeight()/2);
         this.frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.frame.setBackground(Color.BLACK);
-        this.boardPanel =new BoardPanel(3);
-        this.frame.add(boardPanel);
-        this.frame.setVisible(true);
-        this.setUpGameComponents();
-
+        this.frame.setLayout(new CardLayout());
     }
 
     public void setSquareSize(Dimension d){
@@ -43,18 +47,31 @@ public class TicTacToeMain {
         }
     }
 
-    public void setUpGameComponents() throws AWTException {
-        this.components = new GameComponents(new Player("James", Mark.X),new AIPlayerGUI(Mark.O,new DifficultStrategy()),new Board(3),this);
-//        this.components = new GameComponents(new Player("James", Mark.X),new Player("Harry",Mark.O),new Board(3),this);
-        components.setPanelForComputerAI(this.boardPanel);
+    public void setUpGameComponentsHuman() throws AWTException {
+        this.frame.remove(menu);
+        this.components = new GameComponents(new Player("James", Mark.X),new Player("Harry",Mark.O),new Board(5, 2),this);
+        this.boardPanel = new BoardPanel(this.components.getSize());
         this.boardPanel.setComponents(this.components);
+        this.components.setPanelForComputerAI(this.boardPanel);
+        this.frame.add( this.boardPanel);
+        this.frame.revalidate();
+    }
+
+    public void setUpGameComponentsAI() throws AWTException{
+        this.frame.remove(menu);
+        this.components = new GameComponents(new Player("James", Mark.X),new AIPlayerGUI(Mark.O,new DifficultStrategy()),new Board(5,2),this);
+        this.boardPanel = new BoardPanel(this.components.getSize());
+        this.boardPanel.setComponents(this.components);
+        components.setPanelForComputerAI(this.boardPanel);
+        this.frame.add(this.boardPanel);
+        this.frame.revalidate();
     }
 
     public void gameOver(){
-
         frame.remove(boardPanel);
         gop = new GameOverPanel(this);
         frame.add(gop);
+        frame.revalidate();
         gop.addButton(frame.getWidth(),frame.getHeight());
     }
 
@@ -62,7 +79,7 @@ public class TicTacToeMain {
         this.frame.remove(this.gop);
         this.boardPanel.reset();
         this.components.reset();
-        this.frame.add(boardPanel);
+        this.frame.add(this.menu);
     }
     public static void main(String args[]) throws AWTException {
         try {

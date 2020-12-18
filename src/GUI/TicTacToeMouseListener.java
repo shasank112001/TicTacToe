@@ -18,7 +18,7 @@ public class TicTacToeMouseListener implements MouseListener {
         GameButton gameButton = (GameButton)e.getSource();
         try {
             gameButton.clickAction(this.boardPanel,this.boardPanel.getGame().getCurrentPlayer());
-            if(boardPanel.getGame().isAgainstAI() && boardPanel.getGame().isAISChance()){
+            if(!boardPanel.getGame().getBoard().gameOver() && boardPanel.getGame().isAgainstAI() && boardPanel.getGame().isAISChance()){
                 ((AIPlayerGUI)this.boardPanel.getGame().getCurrentPlayer()).makeMove();
             }
         } catch (InvalidMoveArrayException invalidMoveArrayException) {
