@@ -102,7 +102,7 @@ public class TicTacToeMain {
         frame.remove(this.boardPanel);
         gop = new GameOverPanel(this,winnerMark);
         frame.add(gop);
-        gop.addButton(frame.getWidth(),frame.getHeight());
+//        gop.addButton(frame.getWidth(),frame.getHeight());
         frame.revalidate();
     }
 

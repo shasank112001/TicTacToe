@@ -10,21 +10,23 @@ import java.awt.image.ImageObserver;
 
 public class GameOverPanel extends JPanel {
     private JButton replayButton;
+    private JLabel replay;
     private TicTacToeMain mainGame;
     private Mark winnerMark;
     public GameOverPanel(TicTacToeMain mainGame, Mark winnerMark){
         super();
         this.mainGame = mainGame;
         this.winnerMark = winnerMark;
+        this.replay = new JLabel();
+//        this.replay.setIcon(GameButton.scaleImage(this,IconAndImages.getReplayIcon()));
         this.setBackground(Color.BLACK);
         replayButton = new JButton();
         replayButton.setOpaque(false);
         replayButton.setContentAreaFilled(false);
         replayButton.setBorderPainted(false);
-        Dimension replayButtonDim = new Dimension(45,45);
-        replayButton.setSize(replayButtonDim);
-        replayButton.setIcon(new ImageIcon(IconAndImages.getReplayIcon().getScaledInstance(45,45,Image.SCALE_SMOOTH)));
-        replayButton.addMouseListener(new MouseListener() {
+//        Dimension replayButtonDim = new Dimension(45,45);
+//        replayButton.setSize(replayButtonDim);
+        this.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 mainGame.reset();
@@ -49,6 +51,7 @@ public class GameOverPanel extends JPanel {
 
             }
         });
+        this.addLabel();
     }
 
     public Point findLocation(int width,int height){
@@ -59,11 +62,12 @@ public class GameOverPanel extends JPanel {
         return new Point(x,y);
     }
 
-    public void addButton(int width,int height){
-        this.setLayout(null);
-        replayButton.setLocation(this.findLocation(width,height));
-        replayButton.setVisible(true);
-        this.add(replayButton);
+    public void addLabel(){
+        this.setLayout(new BorderLayout());
+        this.replay.setSize(mainGame.getFrameDimension());
+        ImageIcon icon = new ImageIcon(IconAndImages.getReplayTextIcon().getScaledInstance(((int)(mainGame.getFrameDimension().width))/3,10,Image.SCALE_SMOOTH));
+        this.replay.setIcon(icon);
+        this.add(replay,BorderLayout.SOUTH);
     }
     @Override
     public void paintComponent(Graphics g){

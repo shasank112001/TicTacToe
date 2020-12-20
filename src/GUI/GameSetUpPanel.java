@@ -21,16 +21,19 @@ public class GameSetUpPanel extends JPanel {
         this.ticTacToeMain = ticTacToeMain;
         this.titleLabel = new JLabel();
         this.setSize(ticTacToeMain.getFrameDimension());
-        this.titleLabel.setSize(this.getWidth(),this.getHeight()/5);
+        this.titleLabel.setSize(this.getWidth()/3,this.getHeight()/3);
         this.titleLabel.setIcon(GameButton.scaleImage(this.titleLabel,IconAndImages.getTitle()));
         this.setBackground(Color.BLACK);
         this.playFriendButton = new JButton();
+        this.playFriendButton.setFocusPainted(false);
         this.playAIButton = new JButton();
+        this.playAIButton.setFocusPainted(false);
         this.settingsButton = new JButton();
+        this.settingsButton.setFocusPainted(false);
         Dimension playDim = new Dimension(150,50);
         GameSetUpPanel.setUPButtonWithImage(playFriendButton, IconAndImages.getPlayAgainstFriend(),playDim);
         GameSetUpPanel.setUPButtonWithImage(playAIButton, IconAndImages.getPlayAgainstAI(),new Dimension(playFriendButton.getWidth(),50));
-        GameSetUpPanel.setUPButtonWithImage(settingsButton, IconAndImages.getSettings(),new Dimension(120,120));
+        GameSetUpPanel.setUPButtonWithImage(settingsButton, IconAndImages.getSettings(),new Dimension(150,50));
 
         this.playAIButton.addMouseListener(new MouseListener() {
             @Override
@@ -93,11 +96,18 @@ public class GameSetUpPanel extends JPanel {
 
             }
         });
-        this.setLayout(new FlowLayout());
-        this.add(titleLabel);
-        this.add(this.playFriendButton);
-        this.add(this.playAIButton);
-        this.add(this.settingsButton);
+        this.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.anchor = GridBagConstraints.NORTH;
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        this.add(titleLabel,gbc);
+        gbc.gridy += 5;
+        this.add(this.playFriendButton,gbc);
+        gbc.gridy += 5;
+        this.add(this.playAIButton,gbc);
+        gbc.gridy += 5;
+        this.add(this.settingsButton,gbc);
 
     }
 

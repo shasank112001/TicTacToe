@@ -34,6 +34,9 @@ public class IconAndImages {
     private static final URL playAgainstAIAddress = IconAndImages.class.getResource("/imgs/button_play-against-ai.png");
     private static final URL settingButtonAddress = IconAndImages.class.getResource("/imgs/settings.png");
     private static final URL titleAddress = IconAndImages.class.getResource("/imgs/title.png");
+    private static final URL replayTextAddress = IconAndImages.class.getResource("/imgs/replayText.png");
+    private static final URL aiLabelAddress = IconAndImages.class.getResource("/imgs/aiLabel.png");
+    private static final URL gridLabelAddress = IconAndImages.class.getResource("/imgs/gridLabel.png");
     private static Image playButton;
     private static Image title;
     private static Image playAgainstFriend;
@@ -42,10 +45,9 @@ public class IconAndImages {
     private static Image crossIcon;
     private static Image circleIcon;
     private static Image replayIcon;
-
-    public static Image getTitle() {
-        return title;
-    }
+    private static Image replayTextIcon;
+    private static Image aiLabel;
+    private static Image gridLabel;
 
     static {
         try {
@@ -57,9 +59,28 @@ public class IconAndImages {
             playAgainstAI = ImageIO.read(playAgainstAIAddress);
             playAgainstFriend = ImageIO.read(playAddress);
             title = ImageIO.read(titleAddress);
+            replayTextIcon = ImageIO.read(replayTextAddress);
+            aiLabel = ImageIO.read(aiLabelAddress);
+            gridLabel = ImageIO.read(gridLabelAddress);
         } catch (IOException e) {
 //            e.printStackTrace();
         }
+    }
+
+    public static Image getReplayTextIcon() {
+        return replayTextIcon;
+    }
+
+    public static Image getAiLabel() {
+        return aiLabel;
+    }
+
+    public static Image getGridLabel() {
+        return gridLabel;
+    }
+
+    public static Image getTitle() {
+        return title;
     }
 
     public static Image getGameIcon() {

@@ -31,6 +31,7 @@ public class GameButton extends JButton {
         this.defaultColor = this.getBackground();
         int tempSmallerWidth = (this.getWidth()>this.getHeight())?this.getHeight():this.getWidth();
         this.setPreferredSize(new Dimension(tempSmallerWidth,tempSmallerWidth));
+        this.setFocusPainted(false);
     }
     public boolean isClicked(){
         return clicked;
