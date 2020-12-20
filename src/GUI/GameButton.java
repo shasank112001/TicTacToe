@@ -68,15 +68,20 @@ public class GameButton extends JButton {
                 boardPanel.getGame().setAIsChance();
             this.setActionCommand(player.getMark().toString());
             boardPanel.getGame().setNextPlayer();
-            if(boardPanel.getGame().getBoard().gameOver())
-                boardPanel.getGame().gameOver();
+            if(boardPanel.getGame().getBoard().gameOver()){
+                if(boardPanel.getGame().getBoard().checkMarkForWin(Mark.X)){
+                    boardPanel.getGame().gameOver(Mark.X);
+                } else if(boardPanel.getGame().getBoard().checkMarkForWin(Mark.O)){
+                    boardPanel.getGame().gameOver(Mark.O);
+                } else boardPanel.getGame().gameOver(Mark.EMPTY);
+            }
             this.setClicked(true);
             //debug output
             System.out.println(boardPanel.getGame().getBoard());
         }
     }
 
-    public static ImageIcon scaleImage(JButton tbtn, Image img){
+    public static ImageIcon scaleImage(JComponent tbtn, Image img){
         Dimension size = tbtn.getSize();
         Insets insets = tbtn.getInsets();
         size.width -= insets.left + insets.right;

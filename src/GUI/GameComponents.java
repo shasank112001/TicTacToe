@@ -1,6 +1,7 @@
 package GUI;
 
 import TicTac.Board;
+import TicTac.Mark;
 import TicTac.Player;
 
 public class GameComponents {
@@ -60,8 +61,8 @@ public class GameComponents {
             currentPlayer = player1;
     }
 
-    public void gameOver(){
-        this.mainGame.gameOver();
+    public void gameOver(Mark m){
+        this.mainGame.gameOver(m);
     }
 
     public void setPanelForComputerAI(BoardPanel boardPanel){
