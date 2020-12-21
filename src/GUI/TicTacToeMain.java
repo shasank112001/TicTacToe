@@ -1,5 +1,6 @@
 package GUI;
 
+import Exceptions.InvalidMoveArrayException;
 import TicTac.*;
 
 import javax.swing.*;
@@ -8,29 +9,52 @@ import java.awt.*;
 
 public class TicTacToeMain {
     private GameComponents components;
+    private Player humanPlayer1;
+    private Player humanPlayer2;
+    private AIPlayerGUI ai;
+    private Strategy strategy;
+    private Board board;
     private JFrame frame;
     private Dimension frameDimension;
     private BoardPanel boardPanel;
+    private int size;
+    private int winningNum;
     private GameOverPanel gop;
-    private boolean isDefault;
     private GameSetUpPanel menu;
-    private static GameComponents defaultGameComponentsAgainstAI;
-    private static GameComponents defaultGameComponents;
+    private SettingsPanel settingsPanel;
+    private static final int defaultBoardSize = 3;
 
-    {
-        defaultGameComponents = new GameComponents(new Player("James", Mark.X),new Player("Harry",Mark.O),new Board(3, 3),this);
-        defaultGameComponentsAgainstAI = new GameComponents(new Player("James", Mark.X),new AIPlayerGUI(Mark.O,new RandomStrategy()),new Board(3,3),this);
-    }
-//    private MenuPanel menu;
     public TicTacToeMain() throws AWTException {
         this.setUpFrame();
-        this.isDefault = true;
         this.components = null;
+        this.size = defaultBoardSize;
+        this.winningNum = defaultBoardSize;
+        this.humanPlayer1 = new Player("humanPlayer1",Mark.X);
+        this.humanPlayer2 = new Player( "humanPlayer2", Mark.O);
+        this.strategy = new RandomStrategy();
+        this.ai = new AIPlayerGUI(Mark.O,this.strategy);
+        this.board = new Board(this.size,this.winningNum);
         this.menu = new GameSetUpPanel(this);
-//        this.menu = new MenuPanel(this);
         this.frame.add(this.menu);
         this.frame.setVisible(true);
 
+    }
+
+    public void changeBoardProperties(int size,int winningNum){
+        this.size = size;
+        this.winningNum = winningNum;
+    }
+
+    public void changeBoardProperties(int value, boolean isBoardSize){
+        if(isBoardSize){
+            this.changeBoardProperties(value,this.defaultBoardSize);
+        } else {
+            this.changeBoardProperties(this.defaultBoardSize,value);
+        }
+    }
+
+    public void changeStrategy(Strategy strategy){
+        this.ai.setStrategy(strategy);
     }
 
     public Dimension getFrameDimension() {
@@ -64,54 +88,46 @@ public class TicTacToeMain {
 
     public void setUpGameComponentsHuman() throws AWTException {
         this.frame.remove(menu);
-        if(isDefault) {
-            this.components = defaultGameComponents;
-            this.boardPanel = new BoardPanel(this.components.getSize());
-            this.boardPanel.setComponents(this.components);
-            this.components.setPanelForComputerAI(this.boardPanel);
-        } else {
-            this.boardPanel = new BoardPanel(this.components.getSize());
-            this.boardPanel.setComponents(this.components);
-            this.components.setPanelForComputerAI(this.boardPanel);
-        }
+        this.board = new Board(this.size,this.winningNum);
+        this.components = new GameComponents(this.humanPlayer1,this.humanPlayer2,this.board,this);
+        this.boardPanel = new BoardPanel(this.size);
+        this.boardPanel.setComponents(this.components);
+        this.components.setPanelForComputerAI(this.boardPanel);
         this.frame.add( this.boardPanel);
         this.frame.revalidate();
     }
 
     public void setUpGameComponentsAI() throws AWTException{
         this.frame.remove(menu);
-        if(isDefault) {
-            this.components = defaultGameComponentsAgainstAI;
-            this.boardPanel = new BoardPanel(this.components.getSize());
-            this.boardPanel.setComponents(this.components);
-            components.setPanelForComputerAI(this.boardPanel);
-        } else {
-            this.boardPanel = new BoardPanel(this.components.getSize());
-            this.boardPanel.setComponents(this.components);
-            components.setPanelForComputerAI(this.boardPanel);
-        }
-        this.frame.add(this.boardPanel);
+        this.board = new Board(this.size,this.winningNum);
+        this.components = new GameComponents(this.humanPlayer1,this.ai,this.board,this);
+        this.boardPanel = new BoardPanel(this.size);
+        this.boardPanel.setComponents(this.components);
+        this.components.setPanelForComputerAI(this.boardPanel);
+        this.frame.add( this.boardPanel);
         this.frame.revalidate();
-    }
-
-    public void changeGameComponents(GameComponents components){
-        this.components = components;
     }
 
     public void gameOver(Mark winnerMark){
         frame.remove(this.boardPanel);
         gop = new GameOverPanel(this,winnerMark);
         frame.add(gop);
-//        gop.addButton(frame.getWidth(),frame.getHeight());
         frame.revalidate();
     }
 
+    public void addSettingsPanel(){
+        frame.remove(this.menu);
+//        settingsPanel = new SettingsPanel(this);
+        frame.add(new SettingsPanel(this));
+        frame.revalidate();
+    }
     public void reset(){
         this.frame.remove(this.gop);
         this.boardPanel.reset();
         this.components.reset();
         this.frame.add(this.menu);
     }
+
     public static void main(String args[]) throws AWTException {
         try {
             UIManager.setLookAndFeel(new MetalLookAndFeel() );

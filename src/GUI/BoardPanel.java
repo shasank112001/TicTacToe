@@ -1,5 +1,7 @@
 package GUI;
 
+import Exceptions.InvalidMoveArrayException;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -24,9 +26,15 @@ public class BoardPanel extends JPanel {
         }
     }
 
+    public BoardPanel(BoardPanel bp) throws InvalidMoveArrayException {
+        this(bp.size);
+        this.game = new GameComponents(bp.game);
+    }
+
     public void setComponents(GameComponents components){
         this.game = components;
     }
+
     public GameButton getButton(int i, int j){
         return grid[i][j];
     }

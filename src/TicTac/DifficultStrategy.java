@@ -51,6 +51,7 @@ public class DifficultStrategy implements Strategy {
         //random move is necessary
         return fields.get((int) ((fields.size()-1)*Math.random()));
     }
+
     @Override
     public String getName() {
         return NAME;

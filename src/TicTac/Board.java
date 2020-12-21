@@ -117,7 +117,6 @@ public class Board {
 
     public boolean checkColumnAndRow(Mark m){
         int i, j, counter,counter1;
-        System.out.println(this.toString());
         for(i=0;i<size;i++){
             counter = 0;
             counter1 = 0;

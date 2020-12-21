@@ -18,6 +18,15 @@ public class AIPlayerGUI extends Player {
         this.boardPanel = null;
     }
 
+    public void setStrategy(Strategy strategy){
+        this.strategy = strategy;
+    }
+
+    public AIPlayerGUI(AIPlayerGUI ai) throws AWTException, InvalidMoveArrayException {
+        this(ai.getMark(),ai.strategy);
+        this.boardPanel = new BoardPanel(ai.boardPanel);
+    }
+
     public void setBoardPanel(BoardPanel boardPanel) {
         this.boardPanel = boardPanel;
     }

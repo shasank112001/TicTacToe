@@ -1,6 +1,7 @@
 package GUI;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
@@ -13,6 +14,8 @@ public class IconAndImages {
     private static BufferedImage mainMenuImage;
     private static BufferedImage crossWinsImage;
     private static BufferedImage circleWinsImage;
+    private static BufferedImage aiLabel;
+    private static BufferedImage gridLabel;
 
     static {
         try {
@@ -21,6 +24,8 @@ public class IconAndImages {
             mainMenuImage = ImageIO.read(IconAndImages.class.getResource("/imgs/gradient.jpg"));
             crossWinsImage = ImageIO.read(IconAndImages.class.getResource("/imgs/crossWins.png"));
             circleWinsImage = ImageIO.read(IconAndImages.class.getResource("/imgs/circleWins.png"));
+            aiLabel = ImageIO.read(IconAndImages.class.getResource("/imgs/aiLabel.png"));
+            gridLabel = ImageIO.read(IconAndImages.class.getResource("/imgs/gridLabel.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -35,8 +40,9 @@ public class IconAndImages {
     private static final URL settingButtonAddress = IconAndImages.class.getResource("/imgs/settings.png");
     private static final URL titleAddress = IconAndImages.class.getResource("/imgs/title.png");
     private static final URL replayTextAddress = IconAndImages.class.getResource("/imgs/replayText.png");
-    private static final URL aiLabelAddress = IconAndImages.class.getResource("/imgs/aiLabel.png");
-    private static final URL gridLabelAddress = IconAndImages.class.getResource("/imgs/gridLabel.png");
+    private static final URL confirmButtonAddress = IconAndImages.class.getResource("/imgs/button_confirm.png");
+    private static final URL difficultButtonAddress = IconAndImages.class.getResource("/imgs/button_difficult.png");
+    private static final URL easyButtonAddress = IconAndImages.class.getResource("/imgs/button_easy.png");
     private static Image playButton;
     private static Image title;
     private static Image playAgainstFriend;
@@ -46,8 +52,9 @@ public class IconAndImages {
     private static Image circleIcon;
     private static Image replayIcon;
     private static Image replayTextIcon;
-    private static Image aiLabel;
-    private static Image gridLabel;
+    private static Image confirmButton;
+    private static Image easyButton;
+    private static Image difficultButton;
 
     static {
         try {
@@ -60,22 +67,35 @@ public class IconAndImages {
             playAgainstFriend = ImageIO.read(playAddress);
             title = ImageIO.read(titleAddress);
             replayTextIcon = ImageIO.read(replayTextAddress);
-            aiLabel = ImageIO.read(aiLabelAddress);
-            gridLabel = ImageIO.read(gridLabelAddress);
+            easyButton = ImageIO.read(easyButtonAddress);
+            difficultButton = ImageIO.read(difficultButtonAddress);
+            confirmButton = ImageIO.read(confirmButtonAddress);
         } catch (IOException e) {
 //            e.printStackTrace();
         }
+    }
+
+    public static Image getConfirmButton() {
+        return confirmButton;
+    }
+
+    public static Image getEasyButton() {
+        return easyButton;
+    }
+
+    public static Image getDifficultButton() {
+        return difficultButton;
     }
 
     public static Image getReplayTextIcon() {
         return replayTextIcon;
     }
 
-    public static Image getAiLabel() {
+    public static BufferedImage getAiLabel() {
         return aiLabel;
     }
 
-    public static Image getGridLabel() {
+    public static BufferedImage getGridLabel() {
         return gridLabel;
     }
 

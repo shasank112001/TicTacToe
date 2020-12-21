@@ -11,6 +11,15 @@ public class Player {
         this.mark = mark;
     }
 
+    public Player(Player p){
+        this.name = p.getName();
+        this.mark = p.getMark();
+    }
+
+    public String getName(){
+        return name;
+    }
+
     public Player(String name) {
         this(name, Mark.X);
     }

@@ -77,8 +77,6 @@ public class GameButton extends JButton {
                 } else boardPanel.getGame().gameOver(Mark.EMPTY);
             }
             this.setClicked(true);
-            //debug output
-            System.out.println(boardPanel.getGame().getBoard());
         }
     }
 

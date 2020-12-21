@@ -10,6 +10,9 @@ public class ComputerPlayer extends Player{
         this.strategy = strategy;
     }
 
+    public void setStrategy(Strategy strategy){
+        this.strategy = strategy;
+    }
     public int[] determineMove(Board board) throws InvalidMoveArrayException {
         return strategy.determineMove(board,this.mark);
     }

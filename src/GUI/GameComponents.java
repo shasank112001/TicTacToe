@@ -1,6 +1,8 @@
 package GUI;
 
+import Exceptions.InvalidMoveArrayException;
 import TicTac.Board;
+import TicTac.ComputerPlayer;
 import TicTac.Mark;
 import TicTac.Player;
 
@@ -21,6 +23,20 @@ public class GameComponents {
         this.mainGame=mainGame;
     }
 
+    public GameComponents(GameComponents gc) throws InvalidMoveArrayException {
+        this.player1 = new Player(player1);
+        this.player2 = new Player(player2);
+        this.board = new Board(board);
+        this.mainGame = mainGame;
+    }
+
+    public ComputerPlayer getComputerPlayer(){
+        if(player1 instanceof ComputerPlayer){
+            return (ComputerPlayer)player1;
+        } else if(player2 instanceof ComputerPlayer){
+            return (ComputerPlayer)player2;
+        } else return null;
+    }
     public Player getPlayer1() {
         return player1;
     }
