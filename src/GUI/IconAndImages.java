@@ -40,9 +40,11 @@ public class IconAndImages {
     private static final URL settingButtonAddress = IconAndImages.class.getResource("/imgs/settings.png");
     private static final URL titleAddress = IconAndImages.class.getResource("/imgs/title.png");
     private static final URL replayTextAddress = IconAndImages.class.getResource("/imgs/replayText.png");
-    private static final URL confirmButtonAddress = IconAndImages.class.getResource("/imgs/button_confirm.png");
+    private static final URL backButtonAddress = IconAndImages.class.getResource("/imgs/button_go-back.png");
     private static final URL difficultButtonAddress = IconAndImages.class.getResource("/imgs/button_difficult.png");
     private static final URL easyButtonAddress = IconAndImages.class.getResource("/imgs/button_easy.png");
+    private static final URL settingsTitleAddress = IconAndImages.class.getResource("/imgs/settingsTitle.png");
+    private static final URL defaultButtonAddress = IconAndImages.class.getResource("/imgs/button_default.png");
     private static Image playButton;
     private static Image title;
     private static Image playAgainstFriend;
@@ -52,9 +54,11 @@ public class IconAndImages {
     private static Image circleIcon;
     private static Image replayIcon;
     private static Image replayTextIcon;
-    private static Image confirmButton;
+    private static Image backButton;
     private static Image easyButton;
     private static Image difficultButton;
+    private static Image settingsTitle;
+    private static Image defaultButton;
 
     static {
         try {
@@ -69,14 +73,22 @@ public class IconAndImages {
             replayTextIcon = ImageIO.read(replayTextAddress);
             easyButton = ImageIO.read(easyButtonAddress);
             difficultButton = ImageIO.read(difficultButtonAddress);
-            confirmButton = ImageIO.read(confirmButtonAddress);
+            backButton = ImageIO.read(backButtonAddress);
+            settingsTitle = ImageIO.read(settingsTitleAddress);
+            defaultButton = ImageIO.read(defaultButtonAddress);
         } catch (IOException e) {
 //            e.printStackTrace();
         }
     }
 
-    public static Image getConfirmButton() {
-        return confirmButton;
+    public static Image getSettingsTitle(){ return settingsTitle; }
+
+    public static Image getDefaultButton() {
+        return defaultButton;
+    }
+
+    public static Image getBackButton() {
+        return backButton;
     }
 
     public static Image getEasyButton() {

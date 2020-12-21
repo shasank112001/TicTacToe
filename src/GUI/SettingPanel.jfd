@@ -1,0 +1,151 @@
+JFDML JFormDesigner: "7.0.3.0.337" Java: "11.0.9" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
+			name: "this"
+			"minimumSize": new java.awt.Dimension( 384, 384 )
+			"maximumSize": new java.awt.Dimension( 384, 384 )
+			"preferredSize": new java.awt.Dimension( 384, 384 )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "title"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/imgs/settingsTitle.png" )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 115
+				"y": 10
+				"width": 170
+				"height": 45
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "aiDifficultyLabel"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/imgs/AILabel.png" )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 75
+				"y": 55
+				"width": 290
+				"height": 35
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "difficultButton"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/imgs/button_difficult.png" )
+				"focusPainted": false
+				"opaque": false
+				"contentAreaFilled": false
+				"borderPainted": false
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 95
+				"y": 100
+				"width": 100
+				"height": 45
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "easyButton"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/imgs/button_easy.png" )
+				"focusPainted": false
+				"opaque": false
+				"contentAreaFilled": false
+				"borderPainted": false
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 100
+				"height": 45
+				"x": 180
+				"y": 100
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "gridSettingsLabel"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/imgs/gridLabel.png" )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 290
+				"height": 35
+				"x": 105
+				"y": 150
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "boardSizeLabel"
+				"text": "Board Size"
+				"foreground": new java.awt.Color( 255, 255, 255, 255 )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 55
+				"y": 190
+				"width": 70
+				"height": 25
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "winningStrikesLabel"
+				"text": "Winning strikes"
+				"foreground": new java.awt.Color( 255, 255, 255, 255 )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 100
+				"height": 25
+				"x": 201
+				"y": 190
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "winningStrikesTextField"
+				"text": "3"
+				"opaque": false
+				"border": &MatteBorder0 new javax.swing.border.MatteBorder( 1, 1, 1, 1, sfield java.awt.Color black )
+				"caretColor": new java.awt.Color( 255, 255, 255, 255 )
+				"foreground": new java.awt.Color( 255, 255, 255, 255 )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 25
+				"height": 25
+				"x": 299
+				"y": 190
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "defaultButton"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/imgs/button_confirm.png" )
+				"focusPainted": false
+				"opaque": false
+				"contentAreaFilled": false
+				"borderPainted": false
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 95
+				"height": 40
+				"x": 95
+				"y": 235
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "confirmButton"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/imgs/button_confirm.png" )
+				"focusPainted": false
+				"opaque": false
+				"contentAreaFilled": false
+				"borderPainted": false
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 100
+				"height": 40
+				"x": 175
+				"y": 235
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "boardSizeTextField"
+				"text": "3"
+				"opaque": false
+				"border": #MatteBorder0
+				"foreground": new java.awt.Color( 255, 255, 255, 255 )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 25
+				"height": 25
+				"x": 134
+				"y": 190
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "changesMessage"
+				"text": "Your Changes were saved."
+				"foreground": new java.awt.Color( 255, 255, 255, 255 )
+				"visible": false
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 95
+				"y": 275
+				"width": 180
+				"height": 20
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 400, 300 )
+		} )
+	}
+}

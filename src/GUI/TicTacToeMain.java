@@ -1,6 +1,5 @@
 package GUI;
 
-import Exceptions.InvalidMoveArrayException;
 import TicTac.*;
 
 import javax.swing.*;
@@ -21,7 +20,7 @@ public class TicTacToeMain {
     private int winningNum;
     private GameOverPanel gop;
     private GameSetUpPanel menu;
-    private SettingsPanel settingsPanel;
+    private SettingPanel settings;
     private static final int defaultBoardSize = 3;
 
     public TicTacToeMain() throws AWTException {
@@ -35,21 +34,25 @@ public class TicTacToeMain {
         this.ai = new AIPlayerGUI(Mark.O,this.strategy);
         this.board = new Board(this.size,this.winningNum);
         this.menu = new GameSetUpPanel(this);
+        this.settings = new SettingPanel(this);
         this.frame.add(this.menu);
         this.frame.setVisible(true);
 
     }
 
     public void changeBoardProperties(int size,int winningNum){
+        if(winningNum>size){
+            this.size = this.winningNum = size;
+        }
         this.size = size;
         this.winningNum = winningNum;
     }
 
     public void changeBoardProperties(int value, boolean isBoardSize){
         if(isBoardSize){
-            this.changeBoardProperties(value,this.defaultBoardSize);
+            this.changeBoardProperties(value,this.winningNum);
         } else {
-            this.changeBoardProperties(this.defaultBoardSize,value);
+            this.changeBoardProperties(this.size,value);
         }
     }
 
@@ -84,6 +87,7 @@ public class TicTacToeMain {
             this.frame.setSize(d.height/2, d.height/2);
             d.setSize(d.height/2, d.height/2);
         }
+        System.out.println(d);
     }
 
     public void setUpGameComponentsHuman() throws AWTException {
@@ -117,15 +121,25 @@ public class TicTacToeMain {
 
     public void addSettingsPanel(){
         frame.remove(this.menu);
-//        settingsPanel = new SettingsPanel(this);
-        frame.add(new SettingsPanel(this));
+        frame.add(settings);
         frame.revalidate();
+
     }
     public void reset(){
         this.frame.remove(this.gop);
         this.boardPanel.reset();
         this.components.reset();
         this.frame.add(this.menu);
+    }
+
+    public void removeSettingsPanel(){
+        frame.remove(settings);
+        frame.add(this.menu);
+        frame.revalidate();
+    }
+    public void defaultSettings(){
+        this.ai.setStrategy(new RandomStrategy());
+        this.size = this.winningNum = defaultBoardSize;
     }
 
     public static void main(String args[]) throws AWTException {

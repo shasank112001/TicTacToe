@@ -14,7 +14,6 @@ public class GameSetUpPanel extends JPanel {
     JButton playFriendButton;
     JButton playAIButton;
     JButton settingsButton;
-    SettingsPanel settingsPanel;
 
     public GameSetUpPanel(TicTacToeMain ticTacToeMain){
         super();
